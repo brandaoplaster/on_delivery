@@ -1,5 +1,5 @@
-defmodule OnDelivey.Orders.Order do
-  alias OnDelivery.Ordes.Item
+defmodule OnDelivery.Orders.Order do
+  alias OnDelivery.Orders.Item
   alias OnDelivery.Users.User
 
   @key [:user_cpf, :delivery_address, :items, :total_price]
@@ -13,14 +13,14 @@ defmodule OnDelivey.Orders.Order do
      %__MODULE__{
        user_cpf: cpf,
        delivery_address: address,
-       items: nil,
-       total_price: calculete_total_price(items)
+       items: items,
+       total_price: calculate_total_price(items)
      }}
   end
 
   def build(_user, _items), do: {:error, "Invalid parameters"}
 
-  defp calculete_total_price(items) do
+  defp calculate_total_price(items) do
     Enum.reduce(items, Decimal.new("0.00"), &sum_prices(&1, &2))
   end
 

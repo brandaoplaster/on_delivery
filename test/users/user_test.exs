@@ -3,26 +3,20 @@ defmodule OnDelivery.Users.UserTest do
 
   alias OnDelivery.Users.User
 
+  import OnDelivery.Factory
+
   describe "build/5" do
     test "when all params are valid, returns the user" do
       response =
         User.build(
-          "Lucas",
-          "lucas@gmail.com",
-          "123456789",
-          18,
-          "Rua into XX"
+          "brandaoplaster",
+          "bp@gmail.com",
+          "12345678933",
+          20,
+          "Rua into xx"
         )
 
-      expected_response =
-        {:ok,
-         %User{
-           address: "Rua into XX",
-           age: 18,
-           cpf: "123456789",
-           email: "lucas@gmail.com",
-           name: "Lucas"
-         }}
+      expected_response = {:ok, build(:user)}
 
       assert response == expected_response
     end

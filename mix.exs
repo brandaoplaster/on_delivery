@@ -6,6 +6,7 @@ defmodule OnDelivery.MixProject do
       app: :on_delivery,
       version: "0.1.0",
       elixir: "~> 1.10",
+      elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -22,7 +23,11 @@ defmodule OnDelivery.MixProject do
   defp deps do
     [
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
-      {:decimal, "~> 2.0"}
+      {:decimal, "~> 2.0"},
+      {:ex_machina, "~> 2.7.0", only: :test}
     ]
   end
+
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 end

@@ -1,4 +1,4 @@
-defmodule OnDelivery.Ordes.Item do
+defmodule OnDelivery.Orders.Item do
   @categories [:pizza, :humburger, :japonesa, :carne]
   @key [:description, :category, :unity_price, :quantity]
 

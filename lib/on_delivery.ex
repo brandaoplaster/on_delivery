@@ -1,18 +1,10 @@
 defmodule OnDelivery do
-  @moduledoc """
-  Documentation for `OnDelivery`.
-  """
+  alias OnDelivery.Users.CreateOrUpdate
+  alias OnDelivery.Users.Agent, as: UserAgent
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> OnDelivery.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def start_agentes do
+    UserAgent.start_link(%{})
   end
+
+  defdelegate create_or_update_user(params), to: CreateOrUpdate, as: :call
 end

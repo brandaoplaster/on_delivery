@@ -4,11 +4,13 @@ defmodule OnDelivery.Orders.CreateOrUpdate do
   alias Orders.Agent, as: OrderAgent
   alias Orders.{Item, Order}
 
-  def call(%{user_cpf: cpf, items: items}) do
-    with {:or, user} <- UserAgent.get(cpf),
+  def call(%{user_cpf: user_cpf, items: items}) do
+    with {:ok, user} <- UserAgent.get(user_cpf),
          {:ok, items} <- build_items(items),
          {:ok, order} <- Order.build(user, items) do
       OrderAgent.save(order)
+    else
+      error -> error
     end
   end
 

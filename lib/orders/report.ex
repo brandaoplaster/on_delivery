@@ -19,7 +19,7 @@ defmodule OnDelivery.Orders.Report do
       items
       |> Enum.map(&item_string(&1))
 
-    "#{cpf},#{items_string},#{total_price}"
+    "#{cpf},#{items_string},#{total_price}\n"
   end
 
   defp item_string(%Item{category: category, quantity: quantity, unity_price: unity_price}) do
